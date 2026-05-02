@@ -145,7 +145,7 @@ The warm visual system is defined in `app/globals.css` via Tailwind v4 `@theme`:
 vercel --prod
 ```
 
-Vercel auto-detects Next.js and handles the build.
+Vercel auto-detects Next.js and handles the build
 
 ### Other Next.js-Compatible Hosts
 
