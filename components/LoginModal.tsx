@@ -61,7 +61,7 @@ export default function LoginModal({ isOpen, onClose, onLogin, onRegister, initi
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-end justify-center z-[100] p-0 md:p-4"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] p-0 md:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -71,7 +71,7 @@ export default function LoginModal({ isOpen, onClose, onLogin, onRegister, initi
             className="w-full max-w-md bg-surface rounded-t-xl md:rounded-xl p-5 pt-6 pb-8 relative max-h-[90vh] overflow-y-auto md:shadow-lg"
             initial={false}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '100%', opacity: 0 }}
+            exit={{ y: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           >
             <button

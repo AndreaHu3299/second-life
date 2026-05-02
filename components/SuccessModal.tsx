@@ -17,7 +17,7 @@ export default function SuccessModal({ isOpen, onClose, message }: SuccessModalP
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-end justify-center z-[100] p-0 md:p-4"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] p-0 md:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -27,7 +27,7 @@ export default function SuccessModal({ isOpen, onClose, message }: SuccessModalP
             className="w-full max-w-sm bg-surface rounded-t-xl md:rounded-xl p-5 pt-6 pb-8 relative md:shadow-lg"
             initial={false}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '100%', opacity: 0 }}
+            exit={{ y: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           >
             <button

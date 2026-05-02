@@ -24,11 +24,11 @@ export default function HomePage() {
       if (data.date === today) {
         target = data.value;
       } else {
-        target = Math.floor(Math.random() * 51) + 2758;
+        target = Math.floor(Math.random() * 51) + 258;
         localStorage.setItem('counter', JSON.stringify({ date: today, value: target }));
       }
     } else {
-      target = Math.floor(Math.random() * 51) + 2758;
+      target = Math.floor(Math.random() * 51) + 258;
       localStorage.setItem('counter', JSON.stringify({ date: today, value: target }));
     }
 

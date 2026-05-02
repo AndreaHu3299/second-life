@@ -25,12 +25,9 @@ const DISTRICTS = [
 ];
 
 interface ShareDraft {
-  nameZh: string;
-  nameEn: string;
+  name: string;
   storyZh: string;
-  storyEn: string;
   ownerNoteZh: string;
-  ownerNoteEn: string;
   category: ItemCategory;
   condition: ItemCondition;
   district: number;
@@ -38,12 +35,9 @@ interface ShareDraft {
 }
 
 const INITIAL_DRAFT: ShareDraft = {
-  nameZh: '',
-  nameEn: '',
+  name: '',
   storyZh: '',
-  storyEn: '',
   ownerNoteZh: '',
-  ownerNoteEn: '',
   category: 'others',
   condition: 'likeNew',
   district: 0,
@@ -68,11 +62,23 @@ export default function SharePage() {
       return INITIAL_DRAFT;
     }
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof ShareDraft, string>>>({});
 
   const updateDraft = (field: keyof ShareDraft, value: string) => {
     const next = { ...draft, [field]: value };
     setDraft(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    if (errors[field]) setErrors((e) => ({ ...e, [field]: undefined }));
+  };
+
+  const validateStep = (s: number): boolean => {
+    const errs: Partial<Record<keyof ShareDraft, string>> = {};
+    if (s === 1) {
+      if (!draft.name.trim()) errs.name = '1';
+      if (!draft.storyZh.trim()) errs.storyZh = '1';
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
   };
 
   const handleSubmit = () => {
@@ -163,29 +169,16 @@ export default function SharePage() {
               {locale === 'zh-CN' ? '宝贝的基本信息' : 'Basic Info'}
             </h2>
             <div className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="label-text mb-1.5 block">
-                    {locale === 'zh-CN' ? '名字（中文）' : 'Name (Chinese)'}
-                  </label>
-                  <input
-                    className={inputClass}
-                    placeholder="给宝贝起个名字"
-                    value={draft.nameZh}
-                    onChange={(e) => updateDraft('nameZh', e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className="label-text mb-1.5 block">
-                    {locale === 'zh-CN' ? '名字（英文）' : 'Name (English)'}
-                  </label>
-                  <input
-                    className={inputClass}
-                    placeholder="A name for your treasure"
-                    value={draft.nameEn}
-                    onChange={(e) => updateDraft('nameEn', e.target.value)}
-                  />
-                </div>
+              <div>
+                <label className="label-text mb-1.5 block">
+                  {locale === 'zh-CN' ? '名字' : 'Name'}
+                </label>
+                <input
+                  className={inputClass}
+                  placeholder={locale === 'zh-CN' ? '给宝贝起个名字' : 'A name for your treasure'}
+                  value={draft.name}
+                  onChange={(e) => updateDraft('name', e.target.value)}
+                />
               </div>
 
               {/* Category */}
@@ -278,24 +271,13 @@ export default function SharePage() {
             <div className="space-y-5">
               <div>
                 <label className="label-text mb-1.5 block">
-                  {locale === 'zh-CN' ? '故事（中文）' : 'Story (Chinese)'}
+                  {locale === 'zh-CN' ? '故事' : 'Story'}
                 </label>
                 <textarea
                   className={`${inputClass} resize-y min-h-[100px] font-inherit`}
-                  placeholder="嗨！我是..."
+                  placeholder={locale === 'zh-CN' ? '嗨！我是...' : 'Hi! I am...'}
                   value={draft.storyZh}
                   onChange={(e) => updateDraft('storyZh', e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="label-text mb-1.5 block">
-                  {locale === 'zh-CN' ? '故事（英文）' : 'Story (English)'}
-                </label>
-                <textarea
-                  className={`${inputClass} resize-y min-h-[100px] font-inherit`}
-                  placeholder="Hi! I am..."
-                  value={draft.storyEn}
-                  onChange={(e) => updateDraft('storyEn', e.target.value)}
                 />
               </div>
               <div>
@@ -325,7 +307,7 @@ export default function SharePage() {
                   {locale === 'zh-CN' ? '名字' : 'Name'}
                 </span>
                 <p className="text-sm font-semibold text-foreground mt-0.5">
-                  {draft.nameZh} {draft.nameEn && `/ ${draft.nameEn}`}
+                  {draft.name}
                 </p>
               </div>
               {draft.storyZh && (

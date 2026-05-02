@@ -41,9 +41,7 @@ export default function AdoptPage() {
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [showFilters, setShowFilters] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [showCatDropdown, setShowCatDropdown] = useState(false);
-  const [showDistDropdown, setShowDistDropdown] = useState(false);
-  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<'sort' | 'cat' | 'dist' | null>(null);
   const { login, register, addToWishlist, removeFromWishlist, isSaved } = useAuth();
 
   const filtered = useMemo(() => {
@@ -110,36 +108,6 @@ export default function AdoptPage() {
 
             {/* Filters */}
             <div className="space-y-4">
-              <div>
-                <label className="label-uppercase mb-2 block">
-                  {locale === 'zh-CN' ? '排序' : 'Sort'}
-                </label>
-                <div className="relative">
-                  <button
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-border bg-surface text-sm text-foreground transition-colors hover:border-primary/50"
-                    onClick={() => setShowSortDropdown(!showSortDropdown)}
-                  >
-                    <span>{locale === 'zh-CN' ? sortLabel?.zh : sortLabel?.en}</span>
-                    <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
-                  </button>
-                  {showSortDropdown && (
-                    <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-surface shadow-lg overflow-hidden">
-                      {SORT_OPTIONS.map((option) => (
-                        <button
-                          key={option.value}
-                          className={`w-full text-left px-3 py-2 text-sm transition-colors ${
-                            sortBy === option.value ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
-                          }`}
-                          onClick={() => { setSortBy(option.value); setShowSortDropdown(false); }}
-                        >
-                          {locale === 'zh-CN' ? option.zh : option.en}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
               {/* Category Dropdown */}
               <div>
                 <label className="label-uppercase mb-2 block">
@@ -148,18 +116,18 @@ export default function AdoptPage() {
                 <div className="relative">
                   <button
                     className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-border bg-surface text-sm text-foreground transition-colors hover:border-primary/50"
-                    onClick={() => setShowCatDropdown(!showCatDropdown)}
+                    onClick={() => setOpenDropdown(openDropdown === 'cat' ? null : 'cat')}
                   >
                     <span>{category ? t(`categories.${category}`) : (locale === 'zh-CN' ? '全部' : 'All')}</span>
-                    <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showCatDropdown ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 text-muted transition-transform ${openDropdown === 'cat' ? 'rotate-180' : ''}`} />
                   </button>
-                  {showCatDropdown && (
+                  {openDropdown === 'cat' && (
                     <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-surface shadow-lg overflow-hidden">
                       <button
                         className={`w-full text-left px-3 py-2 text-sm transition-colors ${
                           category === null ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                         }`}
-                        onClick={() => { setCategory(null); setShowCatDropdown(false); }}
+                        onClick={() => { setCategory(null); setOpenDropdown(null); }}
                       >
                         {locale === 'zh-CN' ? '全部' : 'All'}
                       </button>
@@ -169,7 +137,7 @@ export default function AdoptPage() {
                           className={`w-full text-left px-3 py-2 text-sm transition-colors ${
                             category === cat.key ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                           }`}
-                          onClick={() => { setCategory(cat.key === category ? null : cat.key); setShowCatDropdown(false); }}
+                          onClick={() => { setCategory(cat.key === category ? null : cat.key); setOpenDropdown(null); }}
                         >
                           {t(`categories.${cat.key}`)}
                         </button>
@@ -187,14 +155,14 @@ export default function AdoptPage() {
                 <div className="relative">
                   <button
                     className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-border bg-surface text-sm text-foreground transition-colors hover:border-primary/50"
-                    onClick={() => setShowDistDropdown(!showDistDropdown)}
+                    onClick={() => setOpenDropdown(openDropdown === 'dist' ? null : 'dist')}
                   >
                     <span>{maxDistance === 0
                       ? locale === 'zh-CN' ? '全部距离' : 'All distances'
                       : DISTANCE_OPTIONS.find((d) => d.value === maxDistance)?.[locale === 'zh-CN' ? 'zh' : 'en'] || ''}</span>
-                    <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showDistDropdown ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 text-muted transition-transform ${openDropdown === 'dist' ? 'rotate-180' : ''}`} />
                   </button>
-                  {showDistDropdown && (
+                  {openDropdown === 'dist' && (
                     <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-surface shadow-lg overflow-hidden max-h-64 overflow-y-auto">
                       {DISTANCE_OPTIONS.map((opt) => (
                         <button
@@ -202,7 +170,7 @@ export default function AdoptPage() {
                           className={`w-full text-left px-3 py-2 text-sm transition-colors ${
                             maxDistance === opt.value ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                           }`}
-                          onClick={() => { setMaxDistance(opt.value); setShowDistDropdown(false); }}
+                          onClick={() => { setMaxDistance(opt.value); setOpenDropdown(null); }}
                         >
                           {locale === 'zh-CN' ? opt.zh : opt.en}
                         </button>
@@ -272,36 +240,6 @@ export default function AdoptPage() {
             </div>
             {showFilters && (
               <div className="space-y-3 p-3 rounded-lg border border-border bg-surface">
-                <div>
-                  <label className="label-text mb-1.5 block">
-                    {locale === 'zh-CN' ? '排序' : 'Sort'}
-                  </label>
-                  <div className="relative">
-                    <button
-                      className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-border bg-white text-sm text-foreground"
-                      onClick={() => setShowSortDropdown(!showSortDropdown)}
-                    >
-                      <span>{locale === 'zh-CN' ? sortLabel?.zh : sortLabel?.en}</span>
-                      <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
-                    </button>
-                    {showSortDropdown && (
-                      <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-white shadow-lg overflow-hidden">
-                        {SORT_OPTIONS.map((option) => (
-                          <button
-                            key={option.value}
-                            className={`w-full text-left px-3 py-2 text-sm ${
-                              sortBy === option.value ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
-                            }`}
-                            onClick={() => { setSortBy(option.value); setShowSortDropdown(false); }}
-                          >
-                            {locale === 'zh-CN' ? option.zh : option.en}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
                 {/* Category Dropdown Mobile */}
                 <div>
                   <label className="label-text mb-1.5 block">
@@ -310,18 +248,18 @@ export default function AdoptPage() {
                   <div className="relative">
                     <button
                       className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-border bg-white text-sm text-foreground"
-                      onClick={() => setShowCatDropdown(!showCatDropdown)}
+onClick={() => setOpenDropdown(openDropdown === 'cat' ? null : 'cat')}
                     >
                       <span>{category ? t(`categories.${category}`) : (locale === 'zh-CN' ? '全部' : 'All')}</span>
-                      <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showCatDropdown ? 'rotate-180' : ''}`} />
+<ChevronDown className={`w-4 h-4 text-muted transition-transform ${openDropdown === 'cat' ? 'rotate-180' : ''}`} />
                     </button>
-                    {showCatDropdown && (
+{openDropdown === 'cat' && (
                       <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-white shadow-lg overflow-hidden">
                         <button
                           className={`w-full text-left px-3 py-2 text-sm ${
                             category === null ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                           }`}
-                          onClick={() => { setCategory(null); setShowCatDropdown(false); }}
+onClick={() => { setCategory(null); setOpenDropdown(null); }}
                         >
                           {locale === 'zh-CN' ? '全部' : 'All'}
                         </button>
@@ -331,7 +269,7 @@ export default function AdoptPage() {
                             className={`w-full text-left px-3 py-2 text-sm ${
                               category === cat.key ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                             }`}
-                            onClick={() => { setCategory(cat.key === category ? null : cat.key); setShowCatDropdown(false); }}
+onClick={() => { setCategory(cat.key === category ? null : cat.key); setOpenDropdown(null); }}
                           >
                             {t(`categories.${cat.key}`)}
                           </button>
@@ -349,14 +287,14 @@ export default function AdoptPage() {
                   <div className="relative">
                     <button
                       className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-border bg-white text-sm text-foreground"
-                      onClick={() => setShowDistDropdown(!showDistDropdown)}
+                      onClick={() => setOpenDropdown(openDropdown === 'dist' ? null : 'dist')}
                     >
                       <span>{maxDistance === 0
                         ? locale === 'zh-CN' ? '全部距离' : 'All distances'
                         : DISTANCE_OPTIONS.find((d) => d.value === maxDistance)?.[locale === 'zh-CN' ? 'zh' : 'en'] || ''}</span>
-                      <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showDistDropdown ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 text-muted transition-transform ${openDropdown === 'dist' ? 'rotate-180' : ''}`} />
                     </button>
-                    {showDistDropdown && (
+                    {openDropdown === 'dist' && (
                       <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-white shadow-lg overflow-hidden max-h-56 overflow-y-auto">
                         {DISTANCE_OPTIONS.map((opt) => (
                           <button
@@ -364,7 +302,7 @@ export default function AdoptPage() {
                             className={`w-full text-left px-3 py-2 text-sm ${
                               maxDistance === opt.value ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                             }`}
-                            onClick={() => { setMaxDistance(opt.value); setShowDistDropdown(false); }}
+                            onClick={() => { setMaxDistance(opt.value); setOpenDropdown(null); }}
                           >
                             {locale === 'zh-CN' ? opt.zh : opt.en}
                           </button>
@@ -411,12 +349,12 @@ export default function AdoptPage() {
               <div className="relative">
                 <button
                   className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-surface text-sm text-foreground transition-colors hover:border-primary/50"
-                  onClick={() => setShowSortDropdown(!showSortDropdown)}
+                  onClick={() => setOpenDropdown(openDropdown === 'sort' ? null : 'sort')}
                 >
                   <span>{locale === 'zh-CN' ? sortLabel?.zh : sortLabel?.en}</span>
-                  <ChevronDown className={`w-4 h-4 text-muted transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 text-muted transition-transform ${openDropdown === 'sort' ? 'rotate-180' : ''}`} />
                 </button>
-                {showSortDropdown && (
+                {openDropdown === 'sort' && (
                   <div className="absolute right-0 z-50 mt-1 w-48 rounded-lg border border-border bg-surface shadow-lg overflow-hidden">
                     {SORT_OPTIONS.map((option) => (
                       <button
@@ -424,7 +362,7 @@ export default function AdoptPage() {
                         className={`w-full text-left px-3 py-2 text-sm transition-colors ${
                           sortBy === option.value ? 'bg-primary-light text-primary' : 'text-foreground hover:bg-bg'
                         }`}
-                        onClick={() => { setSortBy(option.value); setShowSortDropdown(false); }}
+                        onClick={() => { setSortBy(option.value); setOpenDropdown(null); }}
                       >
                         {locale === 'zh-CN' ? option.zh : option.en}
                       </button>

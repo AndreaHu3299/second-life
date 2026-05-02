@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
-import { ChevronLeft, Send, MapPin, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, Send, MapPin, CheckCircle2, LogIn } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 
 export interface ChatMessage {
   id: string;
@@ -237,6 +238,7 @@ export default function MessagesPage() {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
+  const { isLoggedIn } = useAuth();
   const [conversations] = useState<Conversation[]>(FAKE_CONVERSATIONS);
   const [selectedId, setSelectedId] = useState<string | null>(
     FAKE_CONVERSATIONS.length > 0 ? FAKE_CONVERSATIONS[0].id : null,
@@ -244,6 +246,42 @@ export default function MessagesPage() {
   const [showChat, setShowChat] = useState(false);
 
   const selectedConv = conversations.find((c) => c.id === selectedId) ?? null;
+
+  if (!isLoggedIn) {
+    return (
+      <div className="py-6 md:py-10">
+        <div className="h-[calc(100vh-8rem)] max-w-2xl mx-auto rounded-xl border border-border bg-surface overflow-hidden flex items-center justify-center">
+          <div className="text-center p-8">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <LogIn className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="heading-sm mb-2">
+              {locale === 'zh-CN' ? '登录后查看消息' : 'Sign in to view messages'}
+            </h3>
+            <p className="text-sm text-muted mb-6">
+              {locale === 'zh-CN'
+                ? '登录后可与物品主人聊天'
+                : 'Sign in to chat with item owners'}
+            </p>
+            <div className="flex gap-3 justify-center">
+              <button
+                className="px-6 py-2.5 rounded-lg bg-foreground text-white text-sm font-medium hover:bg-foreground/90 transition-colors"
+                onClick={() => router.push('/login')}
+              >
+                {locale === 'zh-CN' ? '登录' : 'Sign in'}
+              </button>
+              <button
+                className="px-6 py-2.5 rounded-lg border border-border text-sm font-medium hover:bg-bg transition-colors"
+                onClick={() => router.push('/')}
+              >
+                {locale === 'zh-CN' ? '返回首页' : 'Back to home'}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-6 md:py-10">
