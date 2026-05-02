@@ -1,0 +1,16 @@
+Build a mobile-first web app for secondhand items framed as "宝贝" (treasures/babies) seeking adoption, not sale. Tagline: 每个宝贝都值得第二次生命 / Every treasure deserves a second life. Items speak first-person. Replace e-commerce terms: "Available" = 等待领养/Awaiting Adoption, "Sold" = 已找到新家/Found New Home. i18n: Chinese primary + English secondary, toggle in header, default zh-CN.
+
+No login to browse. Login to post, chat, or adopt. Mock auth: nickname-based, no real names, optional city.
+
+5 tabs (bottom mobile / top desktop):
+1. 首页/Home: Hero + CTA "去领养". Animated counter "今天X个宝贝找新家". Carousel of most-viewed. Category pills.
+2. 领养/Adopt: Filter by search, category, region (city-district), distance (1/5/10km/same city). Geolocation toggle with manual district fallback. Card grid: photo, name, status, distance "距你Xm", first-person tagline, heart save, owner nickname.
+3. 发布/Share: Steps: photos -> name/category/condition/心意(token price)/region -> first-person story + why leaving -> meetup preference. Exact address NEVER public.
+4. 消息/Messages: Conversation list with status badges. Chat UI with meetup request cards (date/time/place, status flow: Pending/Confirmed/Done).
+5. 我的/My Space: Stats, listings, wishlist, meetup requests, profile, settings. Guest view shows login prompt.
+
+Item detail: full image, first-person intro, metadata (status, district, distance, time, views), owner quote (why letting go), condition badge, "我想领养/I Want to Adopt" (triggers login or chat), save, share. Privacy note: address via chat only, meet in public.
+
+Mock data: 20-30 items. Examples: "小暖" lamp ("主人陪我度过三百个考研夜晚"), "阿书" books ("希望有人继续这些故事"), "铁铁" vintage camera, all first-person, varied categories/distances/statuses.
+
+Design: warm soft aesthetic. Rounded corners, soft shadows, cream bg (#FDF8F3). Colors: terracotta #E8976B, sage green #8FAE8B, gold #D4A574, charcoal text #4A4040. Sprout loading icon, heart save animation. Gamification: adoption counters, user badges. Mobile-first responsive (375px/768px/1024px). All mocked, localStorage, Unsplash images. Full flow completable in <2min.

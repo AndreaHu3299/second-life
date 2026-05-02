@@ -1,0 +1,217 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String?  @unique
+  emailVerified DateTime? @map("email_verified")
+  image     String?
+  name      String?
+  nickname  String
+  phone     String?  @unique
+  city      String?
+  district  String?
+  bio       String?  @default("")
+  joinedAt  DateTime @default(now()) @map("joined_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  accounts     Account[]
+  sessions     Session[]
+  items        Item[]          @relation("ItemOwner")
+  adoptedItems AdoptionRequest[] @relation("Adopter")
+  ownedRequests AdoptionRequest[] @relation("RequestOwner")
+  chatThreads  ChatThread[]
+  wishlist     Wishlist[]
+  meetupRequests MeetupRequest[]
+  badges       UserBadge[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model ItemStory {
+  id          String   @id @default(cuid())
+  itemId      String   @unique @map("item_id")
+  storyZh     String   @db.Text @map("story_zh")
+  storyEn     String   @db.Text @map("story_en")
+  ownerNoteZh String   @db.Text @map("owner_note_zh")
+  ownerNoteEn String   @db.Text @map("owner_note_en")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@map("item_stories")
+}
+
+model Item {
+  id        String   @id @default(cuid())
+  ownerId   String   @map("owner_id")
+  nameZh    String   @map("name_zh")
+  nameEn    String   @map("name_en")
+  photoUrl  String   @db.Text @map("photo_url")
+  category  String
+  condition String
+  districtZh String  @map("district_zh")
+  districtEn String  @map("district_en")
+  cityZh    String   @map("city_zh")
+  cityEn    String   @map("city_en")
+  distance  Int      @default(0)
+  status    String   @default("waiting")
+  views     Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  owner   User        @relation("ItemOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  story   ItemStory?
+  adoptionRequests AdoptionRequest[]
+  wishlist  Wishlist[]
+
+  @@index([category])
+  @@index([status])
+  @@index([ownerId])
+  @@map("items")
+}
+
+model AdoptionRequest {
+  id        String   @id @default(cuid())
+  itemId    String   @map("item_id")
+  userId    String   @map("user_id")
+  ownerId   String   @map("owner_id")
+  message   String?  @db.Text
+  status    String   @default("pending")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  item Item   @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  user User   @relation("Adopter", fields: [userId], references: [id], onDelete: Cascade)
+  owner User  @relation("RequestOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  meetupRequests MeetupRequest[]
+
+  @@unique([itemId, userId])
+  @@map("adoption_requests")
+}
+
+model ChatThread {
+  id          String    @id @default(cuid())
+  userId      String    @map("user_id")
+  itemId      String    @map("item_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@map("chat_threads")
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  threadId   String   @map("thread_id")
+  senderId   String   @map("sender_id")
+  content    String   @db.Text
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  thread ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+  @@index([threadId])
+  @@map("messages")
+}
+
+model MeetupRequest {
+  id              String   @id @default(cuid())
+  adoptionRequestId String  @map("adoption_request_id")
+  requesterId     String   @map("requester_id")
+  proposedLocation String  @db.Text @map("proposed_location")
+  proposedLocationZh String @map("proposed_location_zh")
+  proposedLocationEn String @map("proposed_location_en")
+  proposedTime    DateTime @map("proposed_time")
+  status          String   @default("pending")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  adoptionRequest AdoptionRequest @relation(fields: [adoptionRequestId], references: [id], onDelete: Cascade)
+  requester       User            @relation(fields: [requesterId], references: [id], onDelete: Cascade)
+
+  @@map("meetup_requests")
+}
+
+model Wishlist {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  itemId    String   @map("item_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, itemId])
+  @@map("wishlist")
+}
+
+model Badge {
+  id          String   @id @default(cuid())
+  nameZh      String   @map("name_zh")
+  nameEn      String   @map("name_en")
+  descriptionZh String @db.Text @map("description_zh")
+  descriptionEn String @db.Text @map("description_en")
+  icon        String
+
+  userBadges  UserBadge[]
+
+  @@map("badges")
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  badgeId   String   @map("badge_id")
+  earnedAt  DateTime @default(now()) @map("earned_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+  @@map("user_badges")
+}

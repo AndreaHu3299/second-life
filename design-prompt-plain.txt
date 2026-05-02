@@ -1,0 +1,59 @@
+Build a mobile-first, warm-aesthetic web app for second-hand item exchange. Every item is a 宝贝 (treasure/baby) seeking a new home -- not selling, "adopting."
+
+TAGLINE: 「每个宝贝，都值得第二次生命」 / "Every treasure deserves a second life"
+
+CORE METAPHOR: Items speak in first-person. Listings feel like pet-adoption profiles. Replace e-commerce terms with adoption language: "Available" becomes "等待领养 / Awaiting Adoption", "Sold" becomes "已找到新家 / Found a New Home".
+
+I18N: Chinese (zh-CN) primary + English secondary. Language toggle always visible in header. Chinese is default. All copy bilingual.
+
+AUTH: No login required for browsing. Login needed for: posting, chatting, adopt requests. Mock login: phone+code or email+password. Nickname-based accounts (no real names), optional city/district. Clean minimal login modal.
+
+NAVIGATION (mobile bottom tabs / desktop top nav):
+
+1. 首页 / Home
+Hero with tagline + short description + CTA「去领养 / Adopt". Impact counter: "今天X个宝贝找到新家 / X treasures found homes today" with animated counting. Horizontal carousel of most-viewed items. Quick category pills that scroll horizontally: 数码/Digital, 家居/Home, 书籍/Books, 服饰/Fashion, 玩具/Toys, 其他/Others.
+
+2. 领养 / Adopt
+Browse items. Filter bar: search by story name, category pills, region selector (city to district hierarchy), vicinity toggle (browser geolocation permission -- if denied, fall back to manual district picker). Distance filter chips: 1km, 5km, 10km, 同城/same city. Card grid showing: photo, item name, status badge, distance badge "距你Xm / Xm away", first-person tagline, heart icon to save, owner nickname.
+
+3. 发布 / Share a Baby
+Multi-step flow. Step 1: Upload 3-6 photos, drag to reorder, first = cover. Step 2: Name your baby (e.g., "小暖"), category, condition, "心意/token of appreciation" (NOT "price"), region auto-filled or manual. Step 3: First-person story prompt "如果宝贝会说话，它会怎么介绍自己？ / If your treasure could speak, how would it introduce itself?" with hint text. Plus "为什么送宝贝去找新家 / Why letting go" textbox. Step 4: Meetup preference -- type (in-person, subway station, community gate, coffee shop), available times. Exact address is NEVER shown publicly.
+
+4. 消息 / Messages
+Conversations list with item thumbnail, last message preview, unread badge. Conversation status badges: 领养确认中/Adoption in progress, 约见面/Meetup scheduled, 已完成/Complete. Empty state: warm illustration + "还没有消息，去领养一个宝贝吧 / No messages yet, go adopt a treasure".
+
+5. 我的 / My Space
+Logged in: Avatar + nickname. Stats row (posted, adopted out, adopted in). My listings toggled between 发布中/Active, 已找到新家/Found Home, 待领走/Pending Pickup. Wishlist. Meetup requests. Edit profile (nickname, avatar, city/district, bio). Settings (language, notifications, logout).
+Logged out (guest view): Prompt with benefits + Login/Register buttons.
+
+ITEM DETAIL PAGE:
+Full-width hero image. First-person intro text. Metadata: status badge, category, location (district/city only), distance "距你约1.2km / About 1.2km from you", relative time "2天前/2 days ago", views count. Owner's story card "前主人的话 / From previous owner" -- quote style, why letting go. Optional mini timeline: purchased date -- life moments -- seeking new home. Condition badge: 如新/Like New, 轻微使用痕迹/Gentle Use, 岁月痕迹/Has Character. Primary button 「我想领养 / I Want to Adopt": if not logged in, show login modal with "领养宝贝需要先登录哦 / Please login to adopt"; if logged in, opens chat with owner. Secondary button: 「收藏 / Save" with heart. Tertiary: 「分享宝贝 / Share". Privacy note below: "具体地址将在双方确认后通过聊天分享 / Exact address shared via chat after confirmation". Safety tip: "建议在人多的公共场所见面 / We recommend meeting in public places".
+
+CHAT INTERFACE:
+Messaging UI with item thumbnail + owner nickname at top. Text input + emoji support. Meetup request card -- a special rich message type either party can send: contains date picker, time picker, location input for general place names like cafe or landmark (NOT full address). Status badge on request flows: 待确认/Pending to 已确认/Confirmed to 已完成/Completed, visually distinct card style. System messages with warm tone: "领养请求已发送，等待对方回应 / Adoption request sent, waiting for response".
+
+MOCK DATA (pre-populate 20-30 items across all categories):
+Sample 1. 小暖/A-Nuan -- 暖黄色台灯/warm yellow desk lamp. Story: "嗨！我叫小暖，是一盏暖黄色的台灯。主人陪我度过了考研的三百个夜晚，现在她要离开这座城市，我应该继续照亮某个人的书桌。" Owner note: "小暖陪我度过了考研的三百个夜晚，不是她不好，是我要离开这座城市了。" Category: 家居/Home. Condition: 如新/Like New. Distance: 1.2km. Posted: 2 days ago. Status: 等待领养/Awaiting Adoption.
+Sample 2. 阿书/A-Shu -- 全套《百年孤独》/Complete "One Hundred Years of Solitude". Story: "我是一整套加了书签的《百年孤独》，主人读完了所有7代人的故事，希望有人继续。" Category: 书籍/Books. Status: 已找到新家/Found Home.
+Sample 3. 铁铁/Tie-Tie -- 复古胶片相机/vintage film camera. Story: "我叫铁铁，1987年相机，偶尔会卡一下但拍出来有温暖色调。" Owner note: "铁铁是我的毕业礼物，现在我想把它传给另一个热爱摄影的人。" Category: 数码/Digital. Status: 等待领养.
+Sample 4. 兜兜/Dou-Dou -- 帆布托特包/canvas tote bag. Story: "我是个结实的帆布包，陪主人去过菜市场、图书馆。如果你也喜欢简单的生活，我们很合适。"
+Sample 5. 小绿/Little Green -- 3年多肉植物/3-year succulent. Story: "我是一颗养了3年的多肉！主人经常出差，所以需要一个不会忘记给我浇水的人。"
+Generate 25 more with varied names, stories, categories, conditions, distances, districts, and statuses.
+
+VISUAL DESIGN:
+Warm and soft aesthetic, cozy home feel. Rounded corners everywhere (cards, buttons, inputs). Soft shadows, no harsh edges. Generous whitespace.
+Colors: Primary terracotta/coral (#E8976B). Secondary sage green (#8FAE8B) for growth/new life. Accent soft gold (#D4A574) for treasure. Background warm cream (#FDF8F3). Text warm charcoal (#4A4040), never pure black. Success: muted teal. Warning: warm amber.
+Typography: Rounded friendly sans-serif for both Chinese and English. Larger than default font sizes. Warm letter spacing.
+Icons: Rounded line style. Heart motifs used tastefully. Sprout/seedling visual metaphors.
+Micro-interactions: Heart animation on save/favorite. Gentle bloom or sparkles on "Found Home" status change. Smooth card hover/press states. Loading indicator = small rotating sprout icon.
+
+GAMIFICATION:
+Homepage impact counter "X个宝贝今天找到了新家 / X treasures found homes today" with animated counting on page load.
+User badges displayed on profile: 引路人/Guide (helped 5+ items), 爱心大使/Ambassador of Love (10+ adoptions), 新邻居/New Neighbor (just joined).
+Achievement toasts: first chat ("成就解锁：第一次打招呼！/ Achievement unlocked: First hello!"), first post, first successful adoption.
+
+RESPONSIVE:
+Mobile-first primary viewport: 375px. Single column layout, bottom tab navigation, full-width buttons. Tablet breakpoint 768px: 2-column card grid. Desktop breakpoint 1024px: 3-4 column grid, top navigation bar, sidebar filters on Adopt page.
+
+TECHNICAL:
+All data mocked, no real backend or API needed. Auth stores session in localStorage. Chat messages pre-seeded or simple mock send that persists in localStorage. Meetup request cards are functional UI components (date/time/place selection) saved to localStorage. Geolocation uses browser API with fallback to manual district selection. All images use high-quality Unsplash placeholder photos. Include loading states and error states with friendly non-technical copy. Site must be competition-ready: judge understands concept within 30 seconds, full user flow (browse -> view item -> attempt adopt -> see chat/login) completable in under 2 minutes.
