@@ -34,7 +34,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 1,
       nickname: '林小雨',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=linxiaoyu&backgroundColor=b6e3f4',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/1/253/1334289630/554877193.jpg',
       bio: {
         zh: '前考研党，现在离开北京了。小暖陪我度过了一段重要的时光，希望它找到好主人。',
         en: 'Former exam-prep student, now leaving Beijing. A-Nuan got me through an important time. Hope it finds a good home.',
@@ -65,7 +65,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 2,
       nickname: '苏小青',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=suxiaoqing&backgroundColor=ffd5dc',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/1496523070/3856063133.jpg',
       bio: {
         zh: '阅读爱好者，书架放不下了，希望这些书找到新的读者。',
         en: 'Book lover with a full bookshelf. Hoping these books find new readers who will cherish them.',
@@ -96,7 +96,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 3,
       nickname: '李拍拍',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=lipaipai&backgroundColor=c1e1c1',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/1211131250/2523853890.jpg',
       bio: {
         zh: '业余摄影师，热爱胶片感。铁铁陪我记录了很多珍贵瞬间，希望它继续发挥作用。',
         en: 'Photography enthusiast who loves the film aesthetic. Tie-Tie helped me capture many precious moments. May it keep doing the same.',
@@ -127,7 +127,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 4,
       nickname: '沈闲',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=shenxian&backgroundColor=c0aede',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/3698998770/260217079.jpg',
       bio: {
         zh: '自由职业者，喜欢简单生活。兜兜跟我去了很多地方，现在想让它继续陪伴需要的人。',
         en: 'Freelancer who loves simple living. Dou-Dou traveled with me everywhere. Time for it to accompany someone who needs it.',
@@ -158,7 +158,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 5,
       nickname: '吴旅行',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wutrip&backgroundColor=b6e3f4',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/2695073099/3113203317.jpg',
       bio: {
         zh: '常年在外出差的多肉爱好者，希望小绿找到一个能常伴左右的新主人。',
         en: 'Frequent traveler and succulent lover. Hope Little Green finds someone who can stay close and water it regularly.',
@@ -189,7 +189,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 6,
       nickname: '陈音乐',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=chenmusic&backgroundColor=d1d4f9',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/4064856061/1368707419.jpg',
       bio: {
         zh: '独立音乐人，创作了十几首歌。现在换设备了，但小吉他永远是我的第一个搭档。',
         en: 'Independent musician, wrote over a dozen songs. Upgraded my gear now, but Little Drum will always be my first partner.',
@@ -220,7 +220,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 7,
       nickname: '刘跑者',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=liupacer&backgroundColor=ffdfbf',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/3296707720/1955418873.jpg',
       bio: {
         zh: '跑步爱好者，现在脚受伤了暂时跑不了。希望飞飞继续陪伴下一个跑者。',
         en: 'Running enthusiast, currently injured and can\'t run. Hoping Fei-Fei finds a new runner to accompany.',
@@ -251,7 +251,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 8,
       nickname: '周书生',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhoushusheng&backgroundColor=ffedc7',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/572092993/2464038626.jpg',
       bio: {
         zh: '读书人，搬家带不走的只有回忆和这张桌子。希望找到爱书的人。',
         en: 'A reader with more memories than luggage. This desk and I have seen a lot of books together.',
@@ -282,7 +282,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 9,
       nickname: '赵旅行者',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhaotrip&backgroundColor=c1e1c1',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/2394782721/3427402308.jpg',
       bio: {
         zh: '旅行达人，去过很多地方。这副墨镜陪我走过很多旅途，现在想让它继续旅行。',
         en: 'Seasoned traveler who has been many places. These sunglasses traveled far with me. Time for them to continue the journey.',
@@ -313,7 +313,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 10,
       nickname: '陈怀旧',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=chenhuanjiu&backgroundColor=b6e3f4',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/1/253/3238347855/4149147509.jpg',
       bio: {
         zh: '怀旧的人，爷爷留下的机械表。现在有了智能手表，但机械表的手感无法替代。',
         en: 'A sentimental person. This mechanical watch was my grandfather\'s. Smartwatches are practical, but nothing beats the feel of a mechanical watch.',
@@ -344,7 +344,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 11,
       nickname: '马丢三',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=madisan&backgroundColor=ffd5dc',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/1440620448/106605265.jpg',
       bio: {
         zh: '总是丢三落四的，耳机左耳丢了不下三次了。希望小音找到一个细心的新主人。',
         en: 'Always losing things. My left earbuds have gone missing more times than I can count. Hoping Little Sound finds a more careful owner.',
@@ -375,7 +375,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 12,
       nickname: '小米',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=xiaomi&backgroundColor=c0aede',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/1384495307/2841456444.jpg',
       bio: {
         zh: '家里小朋友长大了，小熊还很新，希望找到会珍惜它的新主人。',
         en: 'Our little girl has grown up. The bear is still in great shape and deserves a new friend who will cherish it.',
@@ -406,7 +406,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 13,
       nickname: '林艺术家',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=linartist&backgroundColor=d1d4f9',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/80195369/1696099480.jpg',
       bio: {
         zh: '艺术从业者，买了颜料却没时间画。希望它们找到下一个创作者。',
         en: 'Artist who bought these paints but never found time to use them. Hoping they find a creator who will put them to good use.',
@@ -437,7 +437,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 14,
       nickname: '赵音乐',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhaomusic&backgroundColor=ffdfbf',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/0/253/1039890271/3926485754.jpg',
       bio: {
         zh: '音乐爱好者，更换了新音箱后老音箱闲置了。低音效果特别好，希望找到懂它的人。',
         en: 'Music lover who upgraded to a newer speaker. The bass on this one is incredible. Hoping it finds someone who can appreciate it.',
@@ -468,7 +468,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 15,
       nickname: '郑茶人',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhengtea&backgroundColor=c1e1c1',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/516032643/785442728.jpg',
       bio: {
         zh: '茶文化爱好者，养了两年的紫砂壶。搬家带不走，希望找到爱茶的新主人。',
         en: 'Tea culture enthusiast who nurtured this purple clay teapot for 2 years. Moving and can\'t take it. Hoping it finds a tea-loving new owner.',
@@ -499,7 +499,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 16,
       nickname: '赵码农',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhaocoder&backgroundColor=b6e3f4',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/2299501635/3877934376.jpg',
       bio: {
         zh: '程序员，小键盘是我的老伙计。现在换了静音轴，想让它找个懂它的人。',
         en: 'A programmer. This keyboard and I logged countless hours together. Now that I have a silent one, it deserves someone who appreciates its sound.',
@@ -530,7 +530,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 17,
       nickname: '小雨',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=xiaoyu&backgroundColor=ffd5dc',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/2180828201/1483470241.jpg',
       bio: {
         zh: '总是忘带伞的人，现在只用折叠伞了。这把长柄伞质量很好，扔了可惜。',
         en: 'Always forgetting umbrellas. Now I only use folding ones. This long-handle umbrella is still in great shape.',
@@ -561,7 +561,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 18,
       nickname: '孙园丁',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=sunyuanding&backgroundColor=c0aede',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/1/253/1900896837/2315891817.jpg',
       bio: {
         zh: '园艺爱好者，修剪了3年的盆景。现在出差太频繁，顾不上了。',
         en: 'Gardening enthusiast who pruned this bonsai for 3 years. Business trips make it hard to care for it now.',
@@ -592,7 +592,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 19,
       nickname: '林出国',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=linabroad&backgroundColor=d1d4f9',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/1111172100/982454911.jpg',
       bio: {
         zh: '即将出国，芦荟带不走。好养活的小植物，希望有人接手。',
         en: 'About to go abroad. This aloe is easy to care for and tough as nails. Hoping someone takes it.',
@@ -623,7 +623,7 @@ export const ITEMS: Item[] = [
     owner: {
       id: 20,
       nickname: '王减肥',
-      avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wangdiet&backgroundColor=ffedc7',
+      avatarUrl: 'https://www.keaitupian.cn/cjpic/frombd/2/253/1509649422/4177602926.jpg',
       bio: {
         zh: '健身成功瘦了很多，以前的衣服都穿不上了。外套很新，希望找到合适的新主人。',
         en: 'Lost a lot of weight through fitness. My old clothes no longer fit. This jacket is still new. Hoping it finds someone with the right fit.',

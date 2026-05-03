@@ -144,7 +144,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
           <div className="bg-surface border border-border rounded-xl px-4 py-3.5 mb-6">
             <p className="label-uppercase mb-3">{locale === 'zh-CN' ? '关于主人' : 'About the Owner'}</p>
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-bg shrink-0">
+              <div className="w-25 h-25 rounded-full overflow-hidden bg-bg shrink-0">
                 <img
                   src={item.owner.avatarUrl}
                   alt={item.owner.nickname}
